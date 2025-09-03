@@ -1,7 +1,7 @@
 app:
   name: v4.eCloudControl.com
   code: ECSWEB
-  notify: rniranjan@ecloudcontrol.com
+  notify: asunil@ecloudcontrol.com
 
 build:
   version: 6.7
@@ -11,7 +11,7 @@ build:
   image_template: wordpress-6.7
 
 deploy:
-  context: niranjan-ragi/DEV
+  context: athulecloud-1207/DEV
   type: statefulset
   #ingress: none
   replicas: 1
@@ -33,8 +33,8 @@ volumes:
 
 properties:
   MYSQL_HOST : "mysql-8-0:3306"
-  MYSQL_DATABASE : "hybcloud"
-  MYSQL_USER : "hybcloud"
+  MYSQL_DATABASE : "mydb"
+  MYSQL_USER : "myuser"
   ENABLE_HA : "no"
   WP_BACKUP_VERBOSE : 0
   MYSQL_ROOT_PASSWORD:
