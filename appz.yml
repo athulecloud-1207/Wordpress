@@ -1,7 +1,8 @@
 app:
-  name: wordpress
-  code: wordpress
+  name: v4.eCloudControl.com
+  code: ECSWEB
   notify: asunil@ecloudcontrol.com
+
 build:
   version: 6.7
   env: DEV
@@ -11,35 +12,39 @@ build:
 
 deploy:
   context: athulecloud-1207/DEV
-  replicas: 1
   type: statefulset
+  #ingress: none
+  replicas: 1
+  resources: x-large
   port:
   - 80
-  
+
 volumes:
-- claim: wordpress-data
-  mount: /var/www/html/wp-content/uploads
-  name: uploads
-  size: 5Gi   
-- claim: wordpress-backup
-  mount: /appz/backup
-  name: backup
-  size: 5Gi 
-  
+  - claim: wp-content
+    mount: /var/www/html/wp-content/uploads
+    name: wp-content
+    size: 250Gi
+  - claim: wp-backup
+    mount: /appz/backup
+    name: backup
+    size: 250Gi   
+
 properties:
-  ENABLE_HA: "no"  
-  #if HA is disabled
   MYSQL_HOST : "mysql-8-0:3306"
-  #if HA is enabled
-  #MYSQL_MASTER_HOST : "mariadb-master-10-4:3306"
-  #MYSQL_SLAVE_HOST : "mariadb-slave-10-4:3306"
-  MYSQL_USER: root
-  MYSQL_DATABASE: mydb
-  ADMIN_USER: wpadmin
-  ADMIN_EMAIL: asunil@ecloudcontrol.com
-  SITE_TITLE: "Wordpress AppZ Workshop Demo"
+  MYSQL_DATABASE : "mydb"
+  MYSQL_USER : "root"
+  ENABLE_HA : "no"
+  WP_BACKUP_VERBOSE : 0
   MYSQL_ROOT_PASSWORD:
      vault: MYSQL_ROOT_PASSWORD
-  #Generate hash at https://ehikioya.com/wordpress-password-hash-generator/
-  ADMIN_PASSWORD_HASH: $P$BAeYgHEtHyCT335q2Iya9JL4CtKHc1/
-  revision : 1
+  SITE_URL : "https://athulecloud-1207-dev-wordpress-6-7.lowtouchcloud.io"
+  SITE_TITLE : "Lowtouch.Ai"
+  ADMIN_USER : webmaster
+  ADMIN_EMAIL : webmaster@ecloudcontrol.com
+  ADMIN_PASSWORD:
+     vault: ADMIN_PASSWORD
+  SITE_PRIVATE_KEY:
+     vault: SITE_PRIVATE_KEY
+  SITE_CERT: 
+     vault: SITE_CERT
+  revision : 0
