@@ -5,7 +5,7 @@ app:
 
 build:
   version: 6.7
-  env: PROD
+  env: DEV
   build_file: none
   output_files: output/*.zip
   image_template: wordpress-6.7
@@ -40,7 +40,7 @@ properties:
   SITE_URL : "https://athulecloud-1207-dev-wordpress-6-7.lowtouchcloud.io"
   SITE_TITLE : "CLOUDCONTROL"
   ADMIN_USER : admin
-  ADMIN_EMAIL : webmaster@ecloudcontrol.com
+  ADMIN_EMAIL : asunil@ecloudcontrol.com
   ADMIN_PASSWORD:
      vault: ADMIN_PASSWORD
   SITE_PRIVATE_KEY:
