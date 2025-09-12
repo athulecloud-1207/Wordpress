@@ -11,7 +11,7 @@ build:
   image_template: wordpress-6.7
 
 deploy:
-  context: athulecloud-1207/PROD
+  context: athulecloud-1207/DEV
   type: statefulset
   ingress: none
   replicas: 1
