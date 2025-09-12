@@ -17,7 +17,7 @@ deploy:
   replicas: 1
   resources: x-large
   port:
-  - 443
+  - 80
 
 volumes:
   - claim: wp-content
@@ -47,4 +47,4 @@ properties:
      vault: SITE_PRIVATE_KEY
   SITE_CERT: 
      vault: SITE_CERT
-  revision : 00
+  revision : 01
